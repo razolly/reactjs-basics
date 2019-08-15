@@ -104,7 +104,7 @@ import { useState } from 'react';
 //   return <Headline />
 // };
 // const Headline = () => {
-//   // https://enmascript.com/articles/2018/10/26/react-conf-2018-understanding-react-hooks-proposal-with-simple-examples
+//   // https://reactjs.org/docs/hooks-overview.html
 //   const [greeting, setGreeting] = useState('hello');  // 
 //   return (
 //     <div>
@@ -130,19 +130,50 @@ import { useState } from 'react';
 //   )
 // };
 
-const App = () => {
-  const [greeting, setGreeting] = useState('hello');  
-  const handleChange = event => setGreeting(event.target.value);  // function
-  return (
-    // Pass function and string to Headline constructor
-    <Headline headline={greeting} onChangeHeadline={handleChange} />  
-  );
-};
-const Headline = ({headline, onChangeHeadline}) => (  // Note: () not {} also, no need return keyword 
-    <div>
-      <h1>{headline}</h1>
-      <input type='text' value={headline} onChange={onChangeHeadline}/>
-    </div>
-);
+/* Similar to above but state and handler function moved to calling component*/
+// const App = () => {
+//   const [greeting, setGreeting] = useState('hello');  
+//   const handleChange = event => setGreeting(event.target.value);  // function
+//   return (
+//     // Pass function and string to Headline constructor
+//     <Headline headline={greeting} onChangeHeadline={handleChange} />  
+//   );
+// };
+// const Headline = ({headline, onChangeHeadline}) => (  // Note: () not {} also, no need return keyword 
+//     <div>
+//       <h1>{headline}</h1>
+//       <input type='text' value={headline} onChange={onChangeHeadline}/>
+//     </div>
+// );
+
+/* Component (apprently its not called a CLASS component. Just component. Everything in React is a component) */
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <First/>
+        <Second/>
+      </div>
+    );
+  }
+}
+class First extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Web Development</h1>
+      </div>
+    );
+  }
+}
+class Second extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>Mobile Development</h2>
+      </div>
+    );
+  }
+}
 
 export default App; /* Will return as a JSX file */ 
