@@ -10,6 +10,7 @@ import { useState } from 'react';
 //   return <h1>{greeting}</h1>
 // }
 
+
 // /* A Class component */
 // class App extends React.Component {
 //   render() {
@@ -21,6 +22,7 @@ import { useState } from 'react';
 //   }
 // }
 
+
 // /* App which returns JSX */
 // function App() {
 //   return <Headline />
@@ -29,6 +31,7 @@ import { useState } from 'react';
 //   const greeting = 'Im from the headline component!';
 //   return <h1>{greeting}</h1>
 // }
+
 
 // /* Passing props around */
 // function App() {
@@ -39,6 +42,7 @@ import { useState } from 'react';
 //   return <h1>{props.value}</h1>
 // }
 
+
 // const App = () => {
 //   const greeting = 'Arrow function';
 //   return <Headline value={greeting} />
@@ -46,6 +50,7 @@ import { useState } from 'react';
 // const Headline = ({value}) => {   
 //   return <h1>{value}</h1>
 // };
+
 
 // /* Nested function calls */
 // const App = () => {
@@ -58,6 +63,7 @@ import { useState } from 'react';
 // const Footer = ({value}) => {
 //   return <h1>{value}</h1>
 // };
+
 
 // /* Calling 2 functional components together */
 // const App = () => {
@@ -77,6 +83,7 @@ import { useState } from 'react';
 //   return <h2>{value2}</h2>
 // };
 
+
 // /* Not a useful example */
 // const App = () => {
 //   return <Headline />
@@ -85,6 +92,7 @@ import { useState } from 'react';
 //   const greeting = 'state example'
 //   return <h1>{greeting}</h1>
 // };
+
 
 // /* 
 //  * hooks with useState
@@ -98,6 +106,7 @@ import { useState } from 'react';
 //   const [greeting, setGreeting] = useState('hello');
 //   return <h1>{greeting}</h1>
 // };
+
 
 // /* Setting a value on input change */
 // const App = () => {
@@ -115,6 +124,7 @@ import { useState } from 'react';
 //   )
 // };
 
+
 // /* Same as above example but onChange method is moved outside */
 // const App = () => {
 //   return <Headline />
@@ -129,6 +139,7 @@ import { useState } from 'react';
 //     </div>
 //   )
 // };
+
 
 /* Similar to above but state and handler function moved to calling component*/
 // const App = () => {
@@ -146,34 +157,91 @@ import { useState } from 'react';
 //     </div>
 // );
 
-/* Component (apprently its not called a CLASS component. Just component. Everything in React is a component) */
+
+// /* Component (apprently its not called a CLASS component. Just component. Everything in React is a component) */
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <First/>
+//         <Second/>
+//       </div>
+//     );
+//   }
+// }
+// class First extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h1>Web Development</h1>
+//       </div>
+//     );
+//   }
+// }
+// class Second extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <h2>Mobile Development</h2>
+//       </div>
+//     );
+//   }
+// }
+
+/* ----------------------- Test ----------------------- */
+// Following tutorial: https://reactjs.org/docs/introducing-jsx.html
+
+// /* Most basic example */
+// function App() {
+//   // This is an element (diff from component). The smallest piece of react
+//   // Elements describe what you want to see on screen
+//   const element = <h1>Hello World!</h1>
+//   return element;
+// }
+
+
+// /* Returning a div with children */
+// function App() {
+//   const element = <h1>Header 1!</h1>
+//   return (
+//     <div>
+//       {element}
+//       <h2>This is header 2</h2>
+//       <p></p>
+//     </div>
+//   );
+// }
+
+
+/* 
+  Lesson: React elements are immutable. They are like a single frame
+  of a movie. The only way to update it is to create a new element and 
+  rerender
+
+  Even though a new element is created, only the node that changed is 
+  updated by the React DOM
+*/
+
+
+/* 
+  Components are like JavaScript functions. They accept arbitrary inputs 
+  (called “props”) and return React elements describing what should 
+  appear on the screen. 
+  The simplest way to define a component is to write a JavaScript function:
+*/
+// function App(props) {
+//   return <h1>Hello {props.name}</h1>
+// }
+
+
+/* Calling a functional component and passing a prop */
 class App extends React.Component {
   render() {
-    return (
-      <div>
-        <First/>
-        <Second/>
-      </div>
-    );
+    return <Welcome name='John Doe'/>
   }
 }
-class First extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Web Development</h1>
-      </div>
-    );
-  }
-}
-class Second extends React.Component {
-  render() {
-    return (
-      <div>
-        <h2>Mobile Development</h2>
-      </div>
-    );
-  }
+function Welcome(props) {
+  return <h1>Yo {props.name}</h1>
 }
 
 export default App; /* Will return as a JSX file */ 
