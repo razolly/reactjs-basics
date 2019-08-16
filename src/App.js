@@ -158,6 +158,74 @@ import { useState } from 'react';
 // );
 
 
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       textWhenClicked: '',  // Stores current text when user clicks button
+//     }
+//   }
+//   handleClick(text) {
+//     this.setState(
+//       {textWhenClicked: text},  // Change the current text 
+//     )
+//   }
+//   render() {
+//     return ( 
+//       <div>
+//         <Form currentText='' onClick={(text) => this.handleClick(text)}/>  
+//         <h1>{this.state.textWhenClicked}</h1>
+//       </div>
+//     )
+//   }
+// }
+// const Form = (currentText, onClick) => {
+//   return (
+//     <div>
+//       <input type='text' value={currentText} defaultValue='Enter text here' onChange={onClick} />
+//       <button onClick={onClick}>Click</button>
+//     </div>
+//   )
+// }
+
+/* 
+  Text box that displays content when submit button is clicked 
+  https://reactjs.org/docs/forms.html
+*/
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      currentText: '',   // Changes as user types
+      newText: '',       // Changes only when submit is clicked. Copies currentText
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    this.setState({currentText: event.target.value});
+  }
+  handleSubmit(event) {
+    this.setState({
+      currentText: '',                    // Clear the state
+      newText: this.state.currentText     // Copy currentText
+    });
+    event.preventDefault();
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          <input type='text' value={this.state.currentText} onChange={this.handleChange}/>
+        </label>
+        <input type='submit' value='Submit'/>
+        <h1>{this.state.newText}</h1>
+      </form>
+    );
+  }
+}
+
+
 // /* Component (apprently its not called a CLASS component. Just component. Everything in React is a component) */
 // class App extends React.Component {
 //   render() {
@@ -187,6 +255,8 @@ import { useState } from 'react';
 //     );
 //   }
 // }
+
+export default App; // Will return as a JSX file 
 
 /* ----------------------- Test ----------------------- */
 // Following tutorial: https://reactjs.org/docs/introducing-jsx.html
@@ -234,14 +304,112 @@ import { useState } from 'react';
 // }
 
 
-/* Calling a functional component and passing a prop */
-class App extends React.Component {
-  render() {
-    return <Welcome name='John Doe'/>
-  }
-}
-function Welcome(props) {
-  return <h1>Yo {props.name}</h1>
-}
+// /* Calling a functional component and passing a prop */
+// class App extends React.Component {
+//   render() {
+//     return <Welcome name='John Doe'/>
+//   }
+// }
+// function Welcome(props) {
+//   return <h1>Yo {props.name}</h1>
+// }
 
-export default App; /* Will return as a JSX file */ 
+
+// /* Calling multiple functional components with diff prop values*/
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         <Welcome greet='Hello' name='Alex'/>
+//         <Welcome greet='Konnichiwa' name='John'/>
+//         <Welcome greet='Wassup' name='Barry'/>
+//       </div>
+//     );
+//   }
+// }
+// function Welcome(props) {
+//   return <h1>{props.greet} {props.name}</h1>
+// }
+
+
+// /* Refactor the class below */
+// function Comment(props) {
+//   return (
+//     <div className="Comment">
+//       <div className="UserInfo">
+//         <img className="Avatar"
+//           src={props.author.avatarUrl}
+//           alt={props.author.name}
+//         />
+//         <div className="UserInfo-name">
+//           {props.author.name}
+//         </div>
+//       </div>
+//       <div className="Comment-text">
+//         {props.text}
+//       </div>
+//       <div className="Comment-date">
+//         {formatDate(props.date)}
+//       </div>
+//     </div>
+//   );
+// }
+
+
+// /* Refactoring (Failed attempt) */
+// const values = {
+//   userInfo : {
+//     avatar: {
+//       avatarUrl: 'https://www.reddit.com/',
+//       name: 'Mr Reddit',
+//     }, 
+//     name: 'Redditor'
+//   },
+//   text: 'Lorem impsum on reddit',
+//   date: '12-01-2000',
+// }
+// class App extends React.Component {
+//   render() {
+//     return (
+//       <Comment obj={values}/>
+//     );
+//   }
+// }
+// function Comment(props) {
+//   // Destructure property
+//   const [userInfo, text, date] = props.obj;
+//   return (
+//     <div>
+//       <UserInfo info={userInfo}/>
+//       <Text info={text}/>
+//       <Date info={date}/>
+//     </div>
+//   );
+// }
+// function UserInfo(props) {
+//   // Destructure property
+//   const [avatarInfo, name] = props.info
+//   return (
+//     <div>
+//       <Avatar val={avatarInfo}/>
+//       <h2>Name: {name}</h2>
+//     </div>
+//   )
+// }
+// function Text(props) {
+//   return <h1>{props.info}</h1>
+// }
+// function Date(props) {
+//   return <h1>{props.date}</h1>
+// }
+// function Avatar(props) {
+//   return (
+//     <div>
+//       <h3>{props.avatarUrl}</h3>
+//       <h3>{props.name}</h3>
+//     </div>
+//   );
+// }
+
+
+// export default App; // Will return as a JSX file 
