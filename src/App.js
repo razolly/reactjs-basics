@@ -189,8 +189,9 @@ import { useState } from 'react';
 // }
 
 /* 
-  Text box that displays content when submit button is clicked 
-  https://reactjs.org/docs/forms.html
+  Amits Exercise:
+    Text box that displays content when submit button is clicked 
+    https://reactjs.org/docs/forms.html
 */
 class App extends React.Component {
   constructor(props) {
@@ -216,6 +217,7 @@ class App extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
+          {/* Textbox will clear when submit is clicked as currentText is cleared in handleSubmit() */}
           <input type='text' value={this.state.currentText} onChange={this.handleChange}/>
         </label>
         <input type='submit' value='Submit'/>
@@ -224,6 +226,68 @@ class App extends React.Component {
     );
   }
 }
+
+
+/* Another version of the above exercise (failed attempt 1) */
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       currentText: '',
+//       finalText:'',
+//     }
+//   }
+
+//   handleSubmit(text) {
+//     this.setState({
+//       finalText: text
+//     });
+//   }
+
+//   render() {
+//     return (
+//       <div>
+//         <h1>{this.state.finalText}</h1>
+//         <Form onClick={(text) => this.handleSubmit(text)} />
+//       </div>
+//     )
+//   }
+// }
+// const Form = (onClick) => {
+//   return (
+//     <div>
+
+//     </div>
+//   )
+// }
+
+// /* Another version of the above exercise (failed attempt 2) */
+// class App extends React.Component {
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       displayText: '',
+//     }
+//     this.handleChange = this.handleChange.bind(this);
+//   }
+
+//   handleChange(text) {
+//     this.setState({
+//       displayText: text,
+//     });
+//   }
+
+//   render() {
+//     return <Headline finalText={this.state.displayText} handler={this.handleChange}/>
+//   }
+// }
+// const Headline = ({finalText, handler}) => (
+//   <div>
+//     <input type='text' defaultValue='Enter text'></input>
+//     <button onClick={handler}>Submit</button>
+//     <h1>{finalText}</h1>
+//   </div>
+// );
 
 
 // /* Component (apprently its not called a CLASS component. Just component. Everything in React is a component) */
